@@ -54,13 +54,13 @@ resource "aws_security_group" "openvpn" {
 }
 
 resource "aws_instance" "openvpn" {
-    ami = "ami-76f4ef17"
+    ami = "ami-4e57bb2e"
     instance_type = "t2.micro"
     subnet_id = "${element(split(",", var.public_subnets), 0)}"
     
     associate_public_ip_address = true
     vpc_security_group_ids = ["${aws_security_group.openvpn.id}"]
-    key_name = "container_summit"
+    key_name = "edinburgh_devops"
 
     tags {
         Name = "VPN"

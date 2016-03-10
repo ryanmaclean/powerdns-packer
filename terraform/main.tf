@@ -29,7 +29,7 @@ module "consul" {
     ingress_cidr_blocks = "0.0.0.0/0"
 
     key_name = "edinburgh_devops"
-    ami = "ami-06648566"
+    ami = "ami-7eb45a1e"
     instance_type = "t2.micro"
 }
 
