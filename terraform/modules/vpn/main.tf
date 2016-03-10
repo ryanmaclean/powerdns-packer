@@ -53,10 +53,6 @@ resource "aws_security_group" "openvpn" {
     }
 }
 
-resource "template_file" "openvpn" {
-    template = "${file("${path.module}/templates/vpn.tpl")}"
-}
-
 resource "aws_instance" "openvpn" {
     ami = "ami-76f4ef17"
     instance_type = "t2.micro"
@@ -65,8 +61,6 @@ resource "aws_instance" "openvpn" {
     associate_public_ip_address = true
     vpc_security_group_ids = ["${aws_security_group.openvpn.id}"]
     key_name = "container_summit"
-
-    user_data = "${template_file.openvpn.rendered}"
 
     tags {
         Name = "VPN"

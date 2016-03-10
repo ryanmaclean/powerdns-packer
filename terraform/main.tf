@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "vpc" {
-    source = "../modules/vpc"
+    source = "modules/vpc"
 
     name = "Production"
     cidr = "10.0.0.0/16"
@@ -13,14 +13,14 @@ module "vpc" {
 }
 
 module "vpn" {
-    source = "../modules/vpn"
+    source = "modules/vpn"
 
     vpc_id = "${module.vpc.vpc_id}"
     public_subnets = "${module.vpc.public_subnets}"
 }
 
 module "consul" {
-    source = "../modules/consul"
+    source = "modules/consul"
 
     cluster_name = "Production"
 
@@ -28,7 +28,7 @@ module "consul" {
     subnets = "${module.vpc.private_subnets}"
     ingress_cidr_blocks = "0.0.0.0/0"
 
-    key_name = "container_summit"
+    key_name = "edinburgh_devops"
     ami = "ami-06648566"
     instance_type = "t2.micro"
 }
@@ -40,7 +40,7 @@ resource "aws_instance" "temp_bastion" {
     subnet_id = "${element(split(",", module.vpc.public_subnets), 0)}"
     associate_public_ip_address = true
     vpc_security_group_ids = ["${aws_security_group.bastion.id}"]
-    key_name = "container_summit"
+    key_name = "edinburgh_devops"
 }
 
 resource "aws_security_group" "bastion" {
