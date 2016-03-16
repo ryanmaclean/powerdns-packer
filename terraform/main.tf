@@ -2,6 +2,16 @@ provider "aws" {
     region = "us-west-2"
 }
 
+variable "consul_ami" {}
+
+variable "openvpn_ami" {
+    default = "ami-4e57bb2e"
+}
+
+variable "key_name" {
+    default = "edinburgh_devops"
+}
+
 module "vpc" {
     source = "modules/vpc"
 
@@ -17,6 +27,8 @@ module "vpn" {
 
     vpc_id = "${module.vpc.vpc_id}"
     public_subnets = "${module.vpc.public_subnets}"
+    ami = "${var.openvpn_ami}"
+    key_name = "${var.key_name}"
 }
 
 module "consul" {
@@ -24,11 +36,12 @@ module "consul" {
 
     cluster_name = "Production"
 
+    ami = "${var.consul_ami}"
     vpc_id = "${module.vpc.vpc_id}"
     subnets = "${module.vpc.private_subnets}"
     ingress_cidr_blocks = "0.0.0.0/0"
 
-    key_name = "edinburgh_devops"
+    key_name = "${var.key_name}"
     ami = "ami-7eb45a1e"
     instance_type = "t2.micro"
 }
@@ -40,7 +53,7 @@ resource "aws_instance" "temp_bastion" {
     subnet_id = "${element(split(",", module.vpc.public_subnets), 0)}"
     associate_public_ip_address = true
     vpc_security_group_ids = ["${aws_security_group.bastion.id}"]
-    key_name = "edinburgh_devops"
+    key_name = "${var.key_name}"
 }
 
 resource "aws_security_group" "bastion" {
@@ -75,4 +88,8 @@ output "bastion_ip" {
 
 output "vpn_ip" {
     value = "${module.vpn.vpn_ip}"
+}
+
+output "vpn_setup_command" {
+    value = "${format("ssh openvpnas@%s", module.vpn.vpn_ip)}"
 }
