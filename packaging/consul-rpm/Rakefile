@@ -1,7 +1,7 @@
 NAME = 'consul-aws'
 VERSION = '0.6.3'
 EPOCH = VERSION.gsub(/[^0-9]/, '').gsub(/^0+/, '')
-PKG_ITER = "0"
+PKG_ITER = "1"
 BUILD_DIR = './build'
 DISTRO_TAG = "amzn1"
 VENDOR = 'HashiCorp'

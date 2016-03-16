@@ -1,5 +1,6 @@
 run.sh
 .terraform/
+.vagrant/
 
 terraform.tfstate
 terraform.tfstate.backup
