@@ -17,9 +17,9 @@ module "vpc" {
 
     name = "Production"
     cidr = "10.0.0.0/16"
-    private_subnets = "10.0.160.0/19,10.0.192.0/19"
-    public_subnets = "10.0.0.0/21,10.0.8.0/21"
-    availability_zones = "us-west-2a,us-west-2b"
+    private_subnets = "10.1.160.0/19,10.1.192.0/19,10.1.224.0/19"
+    public_subnets = "10.1.0.0/21,10.1.8.0/21,10.1.16.0/21"
+    availability_zones = "us-west-2a,us-west-2b,us-west-2c"
 }
 
 module "vpn" {
