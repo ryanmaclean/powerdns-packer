@@ -34,7 +34,7 @@ function getInstanceAddresses() {
         --region "${this_instance_region}" \
         --instance-ids ${instances_in_asg} \
         --query "Reservations[*].Instances[*].{LaunchTime:LaunchTime,PrivateIpAddress:PrivateIpAddress}" \
-        --output=text | sort -s -n -k 1,1 | cut -f 2 -s
+        --output=text | sort -n -k 1,1 | cut -f 2 -s
 }
 
 getInstanceAddresses
