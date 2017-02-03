@@ -11,4 +11,4 @@ $ docker run --rm -p 53:53/udp -p 53:53/tcp -p 8081:8081 terraform/test:1.0 /usr
 
 This is intended for use as part of the Travis CI build for Teraform.
 
-Forked from: jen20/edinburgh-devops-2
+Forked from: [jen20/edinburgh-devops-2](https://github.com/ryanmaclean/powerdns-packer)
