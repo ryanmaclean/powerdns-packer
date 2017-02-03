@@ -9,6 +9,4 @@ It can be run using:
 packer build template.json
 ```
 
-This is intended for use as part of the Travis CI build for Teraform.
-
 Forked from: [jen20/edinburgh-devops-2](https://github.com/ryanmaclean/powerdns-packer)
