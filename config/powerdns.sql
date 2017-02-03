@@ -91,11 +91,6 @@ CREATE TABLE tsigkeys (
 
 CREATE UNIQUE INDEX namealgoindex ON tsigkeys(name, algorithm);
 
-INSERT INTO domains (name, type) values ('sysa.xyz', 'NATIVE');
+INSERT INTO domains (name, type) values ('st.internal', 'NATIVE');
 -- INSERT INTO records (domain_id, name, content, type,ttl,prio) VALUES (1,'hashicorptest.com','localhost ahu@ds9a.nl 1','SOA',86400,NULL);
--- INSERT INTO records (domain_id, name, content, type,ttl,prio) VALUES (1,'hashicorptest.com','dns-us1.powerdns.net','NS',86400,NULL);
--- INSERT INTO records (domain_id, name, content, type,ttl,prio) VALUES (1,'hashicorptest.com','dns-eu1.powerdns.net','NS',86400,NULL);
--- INSERT INTO records (domain_id, name, content, type,ttl,prio) VALUES (1,'www.hashicorptest.com','192.0.2.10','A',120,NULL);
--- INSERT INTO records (domain_id, name, content, type,ttl,prio) VALUES (1,'mail.hashicorptest.com','192.0.2.12','A',120,NULL);
--- INSERT INTO records (domain_id, name, content, type,ttl,prio) VALUES (1,'localhost.hashicorptest.com','127.0.0.1','A',120,NULL);
--- INSERT INTO records (domain_id, name, content, type,ttl,prio) VALUES (1,'hashicorptest.com','mail.hashicorptest.com','MX',120,25);
+-- INSERT INTO records (domain_id, name, content, type,ttl,prio) VALUES (1,'254.169.254.169.in-addr.arpa.','instance-data.cn-north-1.compute.internal. ahu@ds9a.nl 1','PTR',86400,NULL);
